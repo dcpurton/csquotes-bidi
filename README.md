@@ -16,7 +16,7 @@ kpsewhich -var-value=TEXMFHOME
 
 The following packages are required:
 
-* `csquotes` (version 3.6 or higher) with the `biber` backend
+* `csquotes`
 * `graphicx`
 * `bidi`
 * `polyglossia`
