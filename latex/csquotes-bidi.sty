@@ -1,0 +1,190 @@
+%Copyright 2017 David Purton
+%
+%This work may be distributed and/or modified under the
+%conditions of the LaTeX Project Public License, either version 1.3
+%of this license or (at your option) any later version.
+%The latest version of this license is in
+%    http://www.latex-project.org/lppl.txt
+%and version 1.3 or later is part of all distributions of LaTeX
+%version 2005/12/01 or later.
+%
+%This work has the LPPL maintenance status `maintained'.
+%
+%The Current Maintainer of this work is David Purton.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{csquotes-bidi}
+  [2017/08/18 RTL and BIDI support for csquotes]
+
+\RequirePackage{graphicx}
+\RequirePackage{csquotes}
+\RequirePackage{bidi}
+
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{csquotes}}
+\ProcessOptions*
+
+% currently Arabic and Hebrew are supported
+
+% normally you would use right then left quote marks, since quote marks do not
+% mirror in unicode. However, since package options often mean that RTL text is
+% surrounded by LTR quote styles, easier to assume that everything is LTR then
+% reverse the quote marks if the direction is RTL when we actually output them
+\DeclareQuoteStyle{arabic}
+  {\guillemotleft}
+  {\guillemotright}
+  {\textquotedblleft}
+  {\textquotedblright}
+
+\DeclareQuoteStyle{hebrew}
+  {\textquotedblleft}
+  {\textquotedblright}
+  [0.05em]
+  {\textquoteleft}
+  {\textquoteright}
+
+% map lowercase names so we can set the font script in hyphen quote commands
+\newfontscript{arabic}{arab}
+\newfontscript{hebrew}{hebr}
+
+% Set up flags for testing if a language is RTL (is there a better way?)
+\def\csq@langdirarabic{RTL}
+\def\csq@langdirhebrew{RTL}
+
+% reverse non mirroring quote marks if the text direction is RTL (is there a
+% better way?)
+\let\orig@textquotedblleft\textquotedblleft
+\let\orig@textquotedblright\textquotedblright
+\let\orig@textquoteleft\textquoteleft
+\let\orig@textquoteright\textquoteright
+\let\orig@quotedblbase\quotedblbase
+\let\orig@quotesinglbase\quotesinglbase
+
+\def\RLquotedblbase{\reflectbox{\orig@quotedblbase}}
+\def\RLquotesinglbase{\reflectbox{\orig@quotesinglbase}}
+
+\def\textquotedblleft{%
+  \ifbool{@RTL}{\orig@textquotedblright}{\orig@textquotedblleft}}
+\def\textquotedblright{%
+  \ifbool{@RTL}{\orig@textquotedblleft}{\orig@textquotedblright}}
+\def\textquoteleft{%
+  \ifbool{@RTL}{\orig@textquoteright}{\orig@textquoteleft}}
+\def\textquoteright{%
+  \ifbool{@RTL}{\orig@textquoteleft}{\orig@textquoteright}}
+\def\quotedblbase{%
+  \ifbool{@RTL}{\RLquotedblbase}{\orig@quotedblbase}}
+\def\quotesinglbase{%
+  \ifbool{@RTL}{\RLquotesinglbase}{\orig@quotesinglbase}}
+
+% we need to reliably determine if we are in an outer blockquote level
+% independent of inline quotes
+\newcount\csq@blockqlevel
+\csq@blockqlevel=0
+
+% test if a language is RTL
+\newrobustcmd{\csq@iflangRTL}[1]{%
+  \ifcsdef{csq@langdir#1}
+    {\ifcsstring{csq@langdir#1}{RTL}%
+       {\@firstoftwo}
+       {\@secondoftwo}}
+    {\@secondoftwo}}
+
+% test if we are in an outer block level quote
+\def\csq@ifblockstart{%
+  \ifboolexpr{
+    togl {csq@block}
+    and
+    test {\ifnumequal{\csq@blockqlevel}{\z@}}
+  }}
+
+% patch block quotes to ensure footnotes go the right direction and language is
+% not switched until the argument of \mkcitation, since this often contains
+% parentheses which then our reversed
+\patchcmd{\csq@bdquote}
+  {\csq@switchlang{#3{#4}}}
+  {\ifbool{@RTLmain}{\@RTL@footnotetrue}{\@RTL@footnotefalse}#3{%
+     \csq@switchlang{#4}}}
+  {}
+  {}
+
+\patchcmd{\csq@bdquote}
+  {\csq@switchlang{#3{#4}}}
+  {\ifbool{@RTLmain}{\@RTL@footnotetrue}{\@RTL@footnotefalse}#3{%
+     \csq@switchlang{#4}}}
+  {}
+  {}
+
+\patchcmd{\csq@bquote@iii}
+  {\csq@switchlang{#3{#4}}}
+  {\ifbool{@RTLmain}{\@RTL@footnotetrue}{\@RTL@footnotefalse}#3{%
+     \csq@switchlang{#4}}}
+  {}
+  {}
+
+% use polyglossia interface to switch language for citation
+\protected\long\def\csq@switchlang#1{%
+  \ifdef\csq@mainlang
+    {\csuse{text\csq@mainlang}{#1}}
+    {#1}}
+
+% manually set up RTL environments for foreign quotes since the otherlanguage*
+% environmnt does not do this; also track whether we are in an outer level
+% block quotation
+\def\csq@lang#1{%
+  \csq@savelang
+  \lowercase{\csuse{otherlanguage*}{#1}}%
+  \csq@ifblockstart
+    {\csq@iflangRTL{#1}{\setRTL}{\setLTR}}
+    {\csq@iflangRTL{#1}{\beginR\@RTLtrue}{\beginL\@RTLfalse}}%
+  \advance\csq@blockqlevel 1}
+
+% restore text direction and track whether we are in an outer level block
+% quotation at the end of foreign quotes
+\def\csq@endlang{%
+  \advance\csq@blockqlevel-1%
+  \csq@ifblockstart
+    {}
+    {\csq@iflangRTL\languagename{\endR}{\endL}}%
+  \csuse{endotherlanguage*}}
+
+% manually set up RTL environments and RTL scripts since hyphen quotes do not
+% do this (actually, using hyphen quotes is not really a good idea); also track
+% whther we are in an outer level block quotation
+\def\csq@hyph#1{%
+  \csq@savelang
+  \lowercase{\csq@hyphenrules{#1}}%
+  \csq@ifblockstart
+    {\csq@iflangRTL{#1}{\setRTL
+       \addfontfeature{Script=#1}}{\setLTR
+       \addfontfeature{Script=Latin}}}
+    {\csq@iflangRTL{#1}{\beginR\@RTLtrue
+       \addfontfeature{Script=#1}}{\beginL\@RTLfalse
+       \addfontfeature{Script=Latin}}}%
+  \advance\csq@blockqlevel 1}
+
+% restore text direction and track whether we are in an outer level block
+% quotation at the end of hyphen quotes
+\def\csq@endhyph{%
+  \advance\csq@blockqlevel -1%
+  \csq@ifblockstart
+    {}
+    {\ifbool{@RTL}{\endR}{\endL}}}
+
+% track whether we are in an outer level block quotation
+\renewrobustcmd*{\blockquote}{%
+  \csq@getcargs{\csq@bquote{\advance\csq@blockqlevel 1}%
+    {\advance\csq@blockqlevel -1}}}
+
+\renewrobustcmd*{\blockcquote}{%
+  \csq@getccargs{\csq@bquote{\advance\csq@blockqlevel 1}%
+    {\advance\csq@blockqlevel -1}}}
+    
+\renewenvironment*{displayquote}
+  {\csq@getcargs{\csq@bdquote{\advance\csq@blockqlevel 1}%
+    {\advance\csq@blockqlevel -1}}}
+  {\csq@edquote}
+
+\renewenvironment*{displaycquote}
+  {\csq@getccargs{\csq@bdquote{\advance\csq@blockqlevel 1}%
+    {\advance\csq@blockqlevel -1}}}
+  {\csq@edquote}
+
+\endinput

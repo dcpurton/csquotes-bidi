@@ -1,0 +1,262 @@
+\documentclass[12pt]{article}
+
+\usepackage{parskip}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\usepackage[autostyle=true]{csquotes-bidi}
+\usepackage[style=sbl]{biblatex}
+\usepackage{filecontents}
+\begin{filecontents}{\jobname.bib}
+@book{BHS,
+  title = {תנך},
+  langid = {hebrew}
+}
+\end{filecontents}
+\addbibresource{\jobname.bib}
+
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont{Linux Libertine O}[Script=Hebrew,HyphenChar={־}]
+\newfontfamily\englishfont{DejaVu Sans}
+
+\rightfootnoterule
+
+\SetCiteCommand{\autocite}
+\renewcommand*{\mkccitation}[1]{#1}
+
+\MakeAutoQuote{‘}{’}
+\MakeAutoQuote*{“}{”}
+
+\begin{document}
+
+ויאמר אלהים \enquote{יהי אור} ויהי־אור׃
+
+\textquote[בראשית א׳:ג׳]{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃}
+
+\textcquote[בראשית א׳:ג׳]{BHS}{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃}
+
+ויאמר אלהים \foreignquote{english}{Let there be light,} ויהי־אור׃
+
+ויאמר אלהים \hyphenquote{english}{Let there be light,} ויהי־אור׃
+
+\textquote[בראשית א׳:ג׳]{ויאמר אלהים \foreignquote{english}{Let there be light,}
+ויהי־אור׃}
+
+\textquote[בראשית א׳:ג׳]{ויאמר אלהים \hyphenquote{english}{Let there be light,}
+ויהי־אור׃}
+
+\foreignquote{english}{And God said, \enquote{Let there be light,} and there
+was light.}
+
+\hyphenquote{english}{And God said, \enquote{Let there be light,} and there
+was light.}
+
+\foreigntextquote{english}[בראשית א׳:ג׳]{And God said, \enquote{Let there be
+light,} and there was light.}
+
+\foreigntextcquote{english}[בראשית א׳:ג׳]{BHS}{And God said, \enquote{Let there
+be light,} and there was light.}
+
+\foreignquote{english}{And God said, \foreignquote{hebrew}{יהי אור} and there
+was light.}
+
+\hyphenquote{english}{And God said, \foreignquote{hebrew}{יהי אור} and there
+was light.}
+
+\foreigntextquote{english}[בראשית א׳:ג׳]{And God said, \foreignquote{hebrew}{יהי
+אור} and there was light.}
+
+\foreigntextcquote{english}[בראשית א׳:ג׳]{BHS}{And God said,
+\foreignquote{hebrew}{יהי אור} and there was light.}
+
+\hyphentextquote{english}[בראשית א׳:ג׳]{And God said,
+\foreignquote{hebrew}{יהי אור} and there was light.}
+
+\hyphentextcquote{english}[בראשית א׳:ג׳]{BHS}{And God said,
+\foreignquote{hebrew}{יהי אור} and there was light.}
+
+\begin{displayquote}
+  ויאמר אלהים \enquote{יהי אור} ויהי־אור׃
+\end{displayquote}
+
+\begin{displayquote}[בראשית א׳:ג׳]
+  ויאמר אלהים \enquote{יהי אור} ויהי־אור׃
+\end{displayquote}
+
+\begin{displaycquote}[בראשית א׳:ג׳]{BHS}
+  ויאמר אלהים \enquote{יהי אור} ויהי־אור׃
+\end{displaycquote}
+
+\begin{displayquote}[בראשית א׳:ג׳]
+  ויאמר אלהים \foreignquote{english}{Let there be light,} ויהי־אור׃
+\end{displayquote}
+
+\begin{foreigndisplayquote}{english}
+  And God said, \enquote{Let there be light,} and there was light.
+\end{foreigndisplayquote}
+
+\begin{hyphendisplayquote}{english}
+  And God said, \enquote{Let there be light,} and there was light.
+\end{hyphendisplayquote}
+
+\begin{foreigndisplayquote}{english}[בראשית א׳:ג׳]
+  And God said, \enquote{Let there be light,} and there was light.
+\end{foreigndisplayquote}
+
+\begin{foreigndisplaycquote}{english}[בראשית א׳:ג׳]{BHS}
+  And God said, \enquote{Let there be light,} and there was light.
+\end{foreigndisplaycquote}
+
+\begin{hyphendisplayquote}{english}[בראשית א׳:ג׳]
+  And God said, \enquote{Let there be light,} and there was light.
+\end{hyphendisplayquote}
+
+\begin{hyphendisplaycquote}{english}[בראשית א׳:ג׳]{BHS}
+  And God said, \enquote{Let there be light,} and there was light.
+\end{hyphendisplaycquote}
+
+\begin{foreigndisplayquote}{english}[בראשית א׳:ג׳]
+  And God said, \foreignquote{hebrew}{יהי אור} and there was light.
+\end{foreigndisplayquote}
+
+\begin{hyphendisplayquote}{english}[בראשית א׳:ג׳]
+  And God said, \foreignquote{hebrew}{יהי אור} and there was light.
+\end{hyphendisplayquote}
+
+\blockquote[בראשית א׳:ג׳]{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃}
+
+\blockcquote[בראשית א׳:ג׳]{BHS}{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃}
+
+\blockquote[בראשית א׳:ג׳–ז׳]{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃ וירא
+אלהים את־האור כי־טוב ויבדל אלהים בין האור ובין החשך׃ ויקרא אלהים לאור
+\enquote{יום} ולחשך קרא \enquote{לילה} ויהי־ערב ויהי־בקר יום אחד׃ פ ויאמר
+אלהים \enquote{יהי רקיע בתוך המים ויהי מבדיל בין מים למים׃} ויעש אלהים את
+הרקיע־ויבדל בין המים אשר מתחת לרקיע ובין המים אשר מעל לרקיע ויהי כן׃}
+
+\blockcquote[בראשית א׳:ג׳–ז׳]{BHS}{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃
+וירא אלהים את־האור כי־טוב ויבדל אלהים בין האור ובין החשך׃ ויקרא אלהים לאור
+\enquote{יום} ולחשך קרא \enquote{לילה} ויהי־ערב ויהי־בקר יום אחד׃ פ ויאמר
+אלהים \enquote{יהי רקיע בתוך המים ויהי מבדיל בין מים למים׃} ויעש אלהים את
+הרקיע־ויבדל בין המים אשר מתחת לרקיע ובין המים אשר מעל לרקיע ויהי כן׃}
+
+\foreignblockquote{english}[בראשית א׳:ג׳]{And God said, \enquote{Let there be
+light,} and there was light.}
+
+\foreignblockcquote{english}[בראשית א׳:ג׳]{BHS}{And God said, \enquote{Let
+there be light,} and there was light.}
+
+\hyphenblockquote{english}[בראשית א׳:ג׳]{And God said, \enquote{Let there be
+light,} and there was light.}
+
+\hyphenblockcquote{english}[בראשית א׳:ג׳]{BHS}{And God said, \enquote{Let
+there be light,} and there was light.}
+
+\hybridblockquote{english}[בראשית א׳:ג׳]{And God said, \enquote{Let there be
+light,} and there was light.}
+
+\hybridblockcquote{english}[בראשית א׳:ג׳]{BHS}{And God said, \enquote{Let
+there be light,} and there was light.}
+
+\foreignblockquote{english}[בראשית א׳:ג׳–ה׳]{And God said, \enquote{Let there be
+light,} and there was light. God saw that the light was good, and he separated
+the light from the darkness. God called the light \enquote{day,} and the
+darkness he called \enquote{night.} And there was evening, and there was
+morning—the first day.}
+
+\foreignblockcquote{english}[בראשית א׳:ג׳–ה׳]{BHS}{And God said, \enquote{Let
+there be light,} and there was light. God saw that the light was good, and he
+separated the light from the darkness. God called the light \enquote{day,} and
+the darkness he called \enquote{night.} And there was evening, and there was
+morning—the first day.}
+
+\hyphenblockquote{english}[בראשית א׳:ג׳–ה׳]{And God said, \enquote{Let there
+be light,} and there was light. God saw that the light was good, and he
+separated the light from the darkness. God called the light \enquote{day,} and
+the darkness he called \enquote{night.} And there was evening, and there was
+morning—the first day.}
+
+\hyphenblockcquote{english}[בראשית א׳:ג׳–ה׳]{BHS}{And God said, \enquote{Let
+there be light,} and there was light. God saw that the light was good, and he
+separated the light from the darkness. God called the light \enquote{day,} and
+the darkness he called \enquote{night.} And there was evening, and there was
+morning—the first day.}
+
+\hybridblockquote{english}[בראשית א׳:ג׳–ה׳]{And God said, \enquote{Let there
+be light,} and there was light. God saw that the light was good, and he
+separated the light from the darkness. God called the light \enquote{day,} and
+the darkness he called \enquote{night.} And there was evening, and there was
+morning—the first day.}
+
+\hybridblockcquote{english}[בראשית א׳:ג׳–ה׳]{BHS}{And God said, \enquote{Let
+there be light,} and there was light. God saw that the light was good, and he
+separated the light from the darkness. God called the light \enquote{day,} and
+the darkness he called \enquote{night.} And there was evening, and there was
+morning—the first day.}
+
+\textquote[בראשית א׳:ג׳]{ויאמר אלהים \enquote{יהי אור} ויהי־אור}.
+
+\textcquote[בראשית א׳:ג׳]{BHS}{ויאמר אלהים \enquote{יהי אור} ויהי־אור}.
+
+\textquote[בראשית א׳:ג׳][׃]{ויאמר אלהים \enquote{יהי אור} ויהי־אור}
+
+\textcquote[בראשית א׳:ג׳]{BHS}[׃]{ויאמר אלהים \enquote{יהי אור} ויהי־אור}
+
+\textquote[בראשית א׳:ג׳]{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃}
+
+\textcquote[בראשית א׳:ג׳]{BHS}{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃}
+
+\foreigntextquote{english}[בראשית א׳:ג׳]{And God said, \enquote{Let there be
+light,} and there was light}.
+
+\foreigntextcquote{english}[בראשית א׳:ג׳]{BHS}{And God said, \enquote{Let
+there be light,} and there was light}.
+
+\foreigntextquote{english}[בראשית א׳:ג׳][.]{And God said, \enquote{Let there
+be light,} and there was light}
+
+\foreigntextcquote{english}[בראשית א׳:ג׳]{BHS}[.]{And God said, \enquote{Let
+there be light,} and there was light}
+
+\foreigntextquote{english}[בראשית א׳:ג׳]{And God said, \enquote{Let there be
+light,} and there was light.}
+
+\foreigntextcquote{english}[בראשית א׳:ג׳]{BHS}{And God said, \enquote{Let
+there be light,} and there was light.}
+
+\hyphentextquote{english}[בראשית א׳:ג׳]{And God said, \enquote{Let there be
+light,} and there was light}.
+
+\hyphentextcquote{english}[בראשית א׳:ג׳]{BHS}{And God said, \enquote{Let
+there be light,} and there was light}.
+
+\hyphentextquote{english}[בראשית א׳:ג׳][.]{And God said, \enquote{Let there
+be light,} and there was light}
+
+\hyphentextcquote{english}[בראשית א׳:ג׳]{BHS}[.]{And God said, \enquote{Let
+there be light,} and there was light}
+
+\hyphentextquote{english}[בראשית א׳:ג׳]{And God said, \enquote{Let there be
+light,} and there was light.}
+
+\hyphentextcquote{english}[בראשית א׳:ג׳]{BHS}{And God said, \enquote{Let
+there be light,} and there was light.}
+
+‘ויאמר אלהים “יהי אור” ויהי־אור׃’
+
+\textenglish{‘And God said, “Let there be light,” and there was light.’}
+
+\enquote{ויאמר אלהים \enquote{יהי אור}}
+
+\enquote{\enquote{יהי אור} ויהי־אור׃}
+
+\foreignquote{english}{And God said, \enquote{Let there be light,}}
+
+\foreignquote{english}{\enquote{Let there be light,} and there was light.}
+
+\hyphenquote{english}{And God said, \enquote{Let there be light,}}
+
+\hyphenquote{english}{\enquote{Let there be light,} and there was light.}
+
+\printbibliography
+
+\end{document}

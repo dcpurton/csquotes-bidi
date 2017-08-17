@@ -1,0 +1,262 @@
+\documentclass[12pt]{article}
+\usepackage{parskip}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\usepackage[autostyle=true]{csquotes-bidi}
+\usepackage[style=sbl]{biblatex}
+\usepackage{filecontents}
+\begin{filecontents}{\jobname.bib}
+@book{BHS,
+  title = {Biblia Hebraica Stuttgartensia},
+  editor = {Kittel, Rudolf and Elliger, Karl and Rudolph, Wilhelm and Rüger, Hans Peter},
+  edition = {4},
+  location = {Stuttgart},
+  publisher = {Deutsche Bibelgesellschaft},
+  date = {1990},
+  options = {useeditor=false}
+}
+\end{filecontents}
+\addbibresource{\jobname.bib}
+
+\setmainlanguage{english}
+\setotherlanguage{hebrew}
+\setmainfont{DejaVu Sans}
+\newfontfamily\hebrewfont{Linux Libertine O}[Script=Hebrew,HyphenChar={־}]
+
+\SetCiteCommand{\autocite}
+\renewcommand{\mkccitation}[1]{#1}
+
+\MakeAutoQuote{‘}{’}
+\MakeAutoQuote*{“}{”}
+
+\begin{document}
+
+And God said, \enquote{Let there be light,} and there was light.
+
+\textquote[Gen 1:3]{And God said, \enquote{Let there be light,} and there was
+light.}
+
+\textcquote[Gen 1:3]{BHS}{And God said, \enquote{Let there be light,} and
+there was light.}
+
+And God said, \foreignquote{hebrew}{יהי אור} and there was light.
+
+And God said, \hyphenquote{hebrew}{יהי אור} and there was light.
+
+\textquote[Gen 1:3]{And God said, \foreignquote{hebrew}{יהי אור} and there was
+light.}
+
+\textquote[Gen 1:3]{And God said, \hyphenquote{hebrew}{יהי אור} and there was
+light.}
+
+\foreignquote{hebrew}{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃}
+
+\hyphenquote{hebrew}{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃}
+
+\foreigntextquote{hebrew}[Gen 1:3]{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃}
+
+\foreigntextcquote{hebrew}[Gen 1:3]{BHS}{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃}
+
+\hyphentextquote{hebrew}[Gen 1:3]{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃}
+
+\hyphentextcquote{hebrew}[Gen 1:3]{BHS}{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃}
+
+\foreignquote{hebrew}{ויאמר אלהים \foreignquote{english}{Let there be light}
+ויהי־אור׃}
+
+\hyphenquote{hebrew}{ויאמר אלהים \hyphenquote{english}{Let there be light}
+ויהי־אור׃}
+
+\foreigntextquote{hebrew}[Gen 1:3]{ויאמר אלהים \foreignquote{english}{Let
+there be light} ויהי־אור׃}
+
+\hyphentextquote{hebrew}[Gen 1:3]{ויאמר אלהים \hyphenquote{english}{Let there
+be light} ויהי־אור׃}
+
+\begin{displayquote}
+  And God said, \enquote{Let there be light,} and there was light.
+\end{displayquote}
+
+\begin{displayquote}[Gen 1:3]
+  And God said, \enquote{Let there be light,} and there was light.
+\end{displayquote}
+
+\begin{displaycquote}[Gen 1:3]{BHS}
+  And God said, \enquote{Let there be light,} and there was light.
+\end{displaycquote}
+
+\begin{displayquote}[Gen 1:3]
+  And God said, \foreignquote{hebrew}{יהי אור} and there was light.
+\end{displayquote}
+
+\begin{displayquote}[Gen 1:3]
+  And God said, \hyphenquote{hebrew}{יהי אור} and there was light.
+\end{displayquote}
+
+\begin{foreigndisplayquote}{hebrew}
+  ויאמר אלהים \enquote{יהי אור} ויהי־אור׃
+\end{foreigndisplayquote}
+
+\begin{hyphendisplayquote}{hebrew}
+  ויאמר אלהים \enquote{יהי אור} ויהי־אור׃
+\end{hyphendisplayquote}
+
+\begin{foreigndisplayquote}{hebrew}[Gen 1:3]
+  ויאמר אלהים \enquote{יהי אור} ויהי־אור׃
+\end{foreigndisplayquote}
+
+\begin{foreigndisplaycquote}{hebrew}[Gen 1:3]{BHS}
+  ויאמר אלהים \enquote{יהי אור} ויהי־אור׃
+\end{foreigndisplaycquote}
+
+\begin{hyphendisplayquote}{hebrew}[Gen 1:3]
+  ויאמר אלהים \enquote{יהי אור} ויהי־אור׃
+\end{hyphendisplayquote}
+
+\begin{hyphendisplaycquote}{hebrew}[Gen 1:3]{BHS}
+  ויאמר אלהים \enquote{יהי אור} ויהי־אור׃
+\end{hyphendisplaycquote}
+
+\begin{foreigndisplayquote}{hebrew}[Gen 1:3]
+  ויאמר אלהים \foreignquote{english}{Let there be light} ויהי־אור׃
+\end{foreigndisplayquote}
+
+\begin{hyphendisplayquote}{hebrew}[Gen 1:3]
+  ויאמר אלהים \foreignquote{english}{Let there be light} ויהי־אור׃
+\end{hyphendisplayquote}
+
+\blockquote[Gen 1:3]{And God said, \enquote{Let there be light,} and there was
+light.}
+
+\blockcquote[Gen 1:3]{BHS}{And God said, \enquote{Let there be light,} and
+there was light.}
+
+\blockquote[Gen 1:3–5]{And God said, \enquote{Let there be light,} and there
+was light. God saw that the light was good, and he separated the light from
+the darkness. God called the light \enquote{day,} and the darkness he called
+\enquote{night.} And there was evening, and there was morning—the first day.}
+
+\blockcquote[Gen 1:3–5]{BHS}{And God said, \enquote{Let there be light,} and
+there was light. God saw that the light was good, and he separated the light
+from the darkness. God called the light \enquote{day,} and the darkness he
+called \enquote{night.} And there was evening, and there was morning—the first
+day.}
+
+\foreignblockquote{hebrew}[Gen 1:3]{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃}
+
+\foreignblockcquote{hebrew}[Gen 1:3]{BHS}{ויאמר אלהים \enquote{יהי אור}
+ויהי־אור׃}
+
+\hyphenblockquote{hebrew}[Gen 1:3]{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃}
+
+\hyphenblockcquote{hebrew}[Gen 1:3]{BHS}{ויאמר אלהים \enquote{יהי אור}
+ויהי־אור׃}
+
+\hybridblockquote{hebrew}[Gen 1:3]{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃}
+
+\hybridblockcquote{hebrew}[Gen 1:3]{BHS}{ויאמר אלהים \enquote{יהי אור}
+ויהי־אור׃}
+
+\foreignblockquote{hebrew}[Gen 1:3–7]{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃
+וירא אלהים את־האור כי־טוב ויבדל אלהים בין האור ובין החשך׃ ויקרא אלהים לאור
+\enquote{יום} ולחשך קרא \enquote{לילה} ויהי־ערב ויהי־בקר יום אחד׃ פ ויאמר
+אלהים \enquote{יהי רקיע בתוך המים ויהי מבדיל בין מים למים׃} ויעש אלהים את
+הרקיע־ויבדל בין המים אשר מתחת לרקיע ובין המים אשר מעל לרקיע ויהי כן׃}
+
+\foreignblockcquote{hebrew}[Gen 1:3–7]{BHS}{ויאמר אלהים \enquote{יהי אור}
+ויהי־אור׃ וירא אלהים את־האור כי־טוב ויבדל אלהים בין האור ובין החשך׃ ויקרא
+אלהים לאור \enquote{יום} ולחשך קרא \enquote{לילה} ויהי־ערב ויהי־בקר יום אחד׃ פ
+ויאמר אלהים \enquote{יהי רקיע בתוך המים ויהי מבדיל בין מים למים׃} ויעש אלהים
+את הרקיע־ויבדל בין המים אשר מתחת לרקיע ובין המים אשר מעל לרקיע ויהי כן׃}
+
+\hyphenblockquote{hebrew}[Gen 1:3–7]{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃
+וירא אלהים את־האור כי־טוב ויבדל אלהים בין האור ובין החשך׃ ויקרא אלהים לאור
+\enquote{יום} ולחשך קרא \enquote{לילה} ויהי־ערב ויהי־בקר יום אחד׃ פ ויאמר
+אלהים \enquote{יהי רקיע בתוך המים ויהי מבדיל בין מים למים׃} ויעש אלהים את
+הרקיע־ויבדל בין המים אשר מתחת לרקיע ובין המים אשר מעל לרקיע ויהי כן׃}
+
+\hyphenblockcquote{hebrew}[Gen 1:3–7]{BHS}{ויאמר אלהים \enquote{יהי אור}
+ויהי־אור׃ וירא אלהים את־האור כי־טוב ויבדל אלהים בין האור ובין החשך׃ ויקרא
+אלהים לאור \enquote{יום} ולחשך קרא \enquote{לילה} ויהי־ערב ויהי־בקר יום אחד׃ פ
+ויאמר אלהים \enquote{יהי רקיע בתוך המים ויהי מבדיל בין מים למים׃} ויעש אלהים
+את הרקיע־ויבדל בין המים אשר מתחת לרקיע ובין המים אשר מעל לרקיע ויהי כן׃}
+
+\hybridblockquote{hebrew}[Gen 1:3–7]{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃
+וירא אלהים את־האור כי־טוב ויבדל אלהים בין האור ובין החשך׃ ויקרא אלהים לאור
+\enquote{יום} ולחשך קרא \enquote{לילה} ויהי־ערב ויהי־בקר יום אחד׃ פ ויאמר
+אלהים \enquote{יהי רקיע בתוך המים ויהי מבדיל בין מים למים׃} ויעש אלהים את
+הרקיע־ויבדל בין המים אשר מתחת לרקיע ובין המים אשר מעל לרקיע ויהי כן׃}
+
+\hybridblockcquote{hebrew}[Gen 1:3–7]{BHS}{ויאמר אלהים \enquote{יהי אור}
+ויהי־אור׃ וירא אלהים את־האור כי־טוב ויבדל אלהים בין האור ובין החשך׃ ויקרא
+אלהים לאור \enquote{יום} ולחשך קרא \enquote{לילה} ויהי־ערב ויהי־בקר יום אחד׃ פ
+ויאמר אלהים \enquote{יהי רקיע בתוך המים ויהי מבדיל בין מים למים׃} ויעש אלהים
+את הרקיע־ויבדל בין המים אשר מתחת לרקיע ובין המים אשר מעל לרקיע ויהי כן׃}
+
+\textquote[Gen 1:3]{And God said, \enquote{Let there be light,} and there was
+light}.
+
+\textcquote[Gen 1:3]{BHS}{And God said, \enquote{Let there be light,} and
+there was light}.
+
+\textquote[Gen 1:3][.]{And God said, \enquote{Let there be light,} and there
+was light}
+
+\textcquote[Gen 1:3]{BHS}[.]{And God said, \enquote{Let there be light,} and
+there was light}
+
+\textquote[Gen 1:3]{And God said, \enquote{Let there be light,} and there was
+light.}
+
+\textcquote[Gen 1:3]{BHS}{And God said, \enquote{Let there be light,} and
+there was light.}
+
+\foreigntextquote{hebrew}[Gen 1:3]{ויאמר אלהים \enquote{יהי אור} ויהי־אור}.
+
+\foreigntextcquote{hebrew}[Gen 1:3]{BHS}{ויאמר אלהים \enquote{יהי אור}
+ויהי־אור}.
+
+\foreigntextquote{hebrew}[Gen 1:3][׃]{ויאמר אלהים \enquote{יהי אור} ויהי־אור}
+
+\foreigntextcquote{hebrew}[Gen 1:3]{BHS}[׃]{ויאמר אלהים \enquote{יהי אור}
+ויהי־אור}
+
+\foreigntextquote{hebrew}[Gen 1:3]{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃}
+
+\foreigntextcquote{hebrew}[Gen 1:3]{BHS}{ויאמר אלהים \enquote{יהי אור}
+ויהי־אור׃}
+
+\hyphentextquote{hebrew}[Gen 1:3]{ויאמר אלהים \enquote{יהי אור} ויהי־אור}.
+
+\hyphentextcquote{hebrew}[Gen 1:3]{BHS}{ויאמר אלהים \enquote{יהי אור}
+ויהי־אור}.
+
+\hyphentextquote{hebrew}[Gen 1:3][׃]{ויאמר אלהים \enquote{יהי אור} ויהי־אור}
+
+\hyphentextcquote{hebrew}[Gen 1:3]{BHS}[׃]{ויאמר אלהים \enquote{יהי אור}
+ויהי־אור}
+
+\hyphentextquote{hebrew}[Gen 1:3]{ויאמר אלהים \enquote{יהי אור} ויהי־אור׃}
+
+\hyphentextcquote{hebrew}[Gen 1:3]{BHS}{ויאמר אלהים \enquote{יהי אור}
+ויהי־אור׃}
+
+‘And God said, “Let there be light,” and there was light.’
+
+\texthebrew{‘ויאמר אלהים “יהי אור” ויהי־אור׃’}
+
+\enquote{And God said, \enquote{Let there be light,}}
+
+\enquote{\enquote{Let there be light,} and there was light.}
+
+\foreignquote{hebrew}{ויאמר אלהים \enquote{יהי אור}}
+
+\foreignquote{hebrew}{\enquote{יהי אור} ויהי־אור׃}
+
+\hyphenquote{hebrew}{ויאמר אלהים \enquote{יהי אור}}
+
+\hyphenquote{hebrew}{\enquote{יהי אור} ויהי־אור׃}
+
+\printbibliography
+
+\end{document}
